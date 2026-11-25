@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b33">
+  <meta name="description" content="Presentación personal y organización del PIA Mi futuro profesional: Reflexión y planificación.">
+  <title>Mi futuro profesional | Presentación personal</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/export-word.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+      <span class="brand-mark">P</span>
+      <span><strong>PIA</strong><small>Mi futuro profesional</small></span>
+    </a>
+    <nav class="top-actions" aria-label="Acciones del documento">
+      <button class="button button-quiet" id="print-button" type="button">
+        <span aria-hidden="true">⎙</span> Imprimir / PDF
+      </button>
+      <button class="button button-primary" id="export-button" type="button">
+        <span aria-hidden="true">↓</span> Exportar a Word
+      </button>
+    </nav>
+  </header>
+
+  <main id="inicio" class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <span class="eyebrow">TU PROYECTO</span>
+        <h2>Mi futuro<br>profesional</h2>
+        <p>Reflexión y planificación</p>
+      </div>
+      <div class="progress-card">
+        <div class="progress-label"><span>Avance del documento</span><strong>1 de 10</strong></div>
+        <div class="progress-track"><span></span></div>
+        <small>La presentación personal es el apartado que estamos preparando.</small>
+      </div>
+      <nav class="side-nav" aria-label="Apartados del PIA">
+        <a class="side-link active" href="#presentacion"><span class="side-number">02</span><span>Presentación personal</span><span class="side-state">Editando</span></a>
+        <a class="side-link" href="#estructura"><span class="side-number">03</span><span>Resto del PIA</span></a>
+      </nav>
+      <div class="sidebar-note">
+        <span class="note-icon" aria-hidden="true">✦</span>
+        <p><strong>Consejo</strong><br>Lee el texto y cambia cualquier frase que no suene como tú antes de entregarlo.</p>
+      </div>
+      <div class="sidebar-bottom">UANL · Escuela Industrial y Preparatoria Técnica Álvaro Obregón</div>
+    </aside>
+
+    <section class="workspace">
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">DOCUMENTO INDIVIDUAL · ETAPA 4</span>
+          <h1>Presentación personal</h1>
+          <p>Completa tus datos, revisa el texto y exporta el documento cuando esté listo.</p>
+        </div>
+        <span class="status-pill"><span></span> Borrador editable</span>
+      </div>
+
+      <div class="editor-grid" id="presentacion">
+        <section class="editor-panel" aria-labelledby="editor-title">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">01 / DATOS</span>
+              <h2 id="editor-title">Información de portada</h2>
+            </div>
+            <span class="panel-icon" aria-hidden="true">⌘</span>
+          </div>
+          <div class="field-grid">
+            <label class="field field-wide">Nombre completo
+              <input id="student-name" type="text" placeholder="Escribe tu nombre completo" autocomplete="name">
+            </label>
+            <label class="field">Grupo
+              <input id="student-group" type="text" placeholder="Ej. 3° A">
+            </label>
+            <label class="field">Fecha
+              <input id="document-date" type="date" value="2026-11-24">
+            </label>
+            <label class="field field-wide">Unidad de aprendizaje / docente (opcional)
+              <input id="teacher" type="text" placeholder="Escribe el dato si te lo solicitan">
+            </label>
+          </div>
+
+          <div class="panel-divider"></div>
+          <div class="panel-heading text-heading">
+            <div>
+              <span class="eyebrow">02 / CONTENIDO</span>
+              <h2>Tu presentación</h2>
+            </div>
+            <span class="character-count" id="character-count">0 caracteres</span>
+          </div>
+          <p class="helper-text">El texto es un borrador basado en tus intereses. Puedes editarlo directamente.</p>
+          <label class="field text-area-field" for="personal-text">Presentación personal
+            <textarea id="personal-text" rows="15">Soy estudiante de la Escuela Industrial y Preparatoria Técnica Álvaro Obregón, en el área de Programación Web. Me interesa la tecnología, la computación y conocer cómo funcionan los programas y sistemas que utilizamos todos los días.
+
+Me gusta aprender cosas nuevas, especialmente cuando puedo ponerlas en práctica y crear algo que funcione. He trabajado con programación web, diseño de páginas y herramientas de desarrollo. También me llama la atención la ciberseguridad, la ingeniería y los proyectos donde se combinan diferentes conocimientos para resolver problemas.
+
+En este momento estoy considerando opciones como Ingeniería Mecánica y Eléctrica, Mecatrónica y Aeronáutica. Me interesa conocer mejor qué se hace en cada una, qué habilidades se necesitan y cómo sería trabajar en esos campos antes de tomar una decisión.
+
+Entre los valores que considero importantes están la responsabilidad, la honestidad, el respeto y la superación personal. Me gusta tener libertad para explorar ideas y buscar diferentes formas de hacer un trabajo. También reconozco que necesito mejorar mi organización y constancia, porque algunas veces comienzo proyectos con mucho interés, pero me cuesta mantener el mismo ritmo hasta terminarlos.
+
+Mi objetivo al elegir una profesión es encontrar algo que realmente me interese, que me permita seguir aprendiendo y que tenga oportunidades de crecimiento. No quiero elegir una carrera solamente porque tenga un buen sueldo o porque otras personas la consideren buena. Quiero estudiar algo en lo que pueda desarrollar mis habilidades, resolver problemas y sentir que estoy haciendo algo que vale la pena.</textarea>
+          </label>
+          <div class="editor-footer">
+            <span><span class="live-dot"></span> La vista previa se actualiza automáticamente</span>
+            <button class="text-button" id="reset-text" type="button">Restablecer borrador</button>
+          </div>
+        </section>
+
+        <section class="preview-column" aria-label="Vista previa del documento">
+          <div class="preview-toolbar">
+            <div><span class="preview-dot"></span><span>VISTA PREVIA</span></div>
+            <span>Formato de documento</span>
+          </div>
+          <article class="paper" id="document-preview">
+            <section class="cover-page">
+              <div class="cover-institution">UNIVERSIDAD AUTÓNOMA DE NUEVO LEÓN</div>
+              <div class="cover-school">ESCUELA INDUSTRIAL Y PREPARATORIA TÉCNICA<br>“ÁLVARO OBREGÓN”</div>
+              <div class="cover-rule"></div>
+              <div class="cover-symbol" aria-hidden="true">P</div>
+              <div class="cover-kicker">PROYECTO INTEGRADOR DE APRENDIZAJE</div>
+              <h2>Mi futuro profesional:<br><em>Reflexión y planificación</em></h2>
+              <p class="cover-subtitle">Presentación personal</p>
+              <div class="cover-details">
+                <div><span>ESTUDIANTE</span><strong id="preview-name">Nombre del estudiante</strong></div>
+                <div><span>GRUPO</span><strong id="preview-group">Por completar</strong></div>
+                <div><span>UNIDAD DE APRENDIZAJE / DOCENTE</span><strong id="preview-teacher">Por completar</strong></div>
+                <div><span>FECHA</span><strong id="preview-date">24 de noviembre de 2026</strong></div>
+              </div>
+              <div class="cover-image-placeholder">ESPACIO PARA IMAGEN REPRESENTATIVA</div>
+              <div class="cover-footer">UNIVERSIDAD AUTÓNOMA DE NUEVO LEÓN</div>
+            </section>
+            <section class="paper-content">
+              <div class="document-section-number">02 <span>· REFLEXIÓN PERSONAL</span></div>
+              <h2>Presentación personal</h2>
+              <div id="preview-text" class="preview-body"></div>
+              <div class="paper-page-footer"><span>MI FUTURO PROFESIONAL</span><span>02</span></div>
+            </section>
+          </article>
+          <p class="preview-caption">Vista aproximada. El archivo de Word se genera con texto editable y formato académico.</p>
+        </section>
+      </div>
+
+      <section class="structure-section" id="estructura">
+        <div class="section-intro">
+          <div><span class="eyebrow">GUÍA DEL PROYECTO</span><h2>Estructura completa del PIA</h2></div>
+          <p>Estos son los apartados que faltan por desarrollar. No se agregan datos inventados al documento.</p>
+        </div>
+        <div class="structure-list">
+          <div class="structure-item done"><span class="structure-index">01</span><div><strong>Portada</strong><small>Datos institucionales y del estudiante</small></div><span class="structure-status">En esta página</span></div>
+          <div class="structure-item current"><span class="structure-index">02</span><div><strong>Presentación personal</strong><small>Intereses, valores, estilo de aprendizaje y motivaciones</small></div><span class="structure-status">En edición</span></div>
+          <div class="structure-item"><span class="structure-index">03</span><div><strong>Resultados de pruebas vocacionales</strong><small>Resultados, gráficas y reflexión personal</small></div><span class="structure-status">Pendiente</span></div>
+          <div class="structure-item"><span class="structure-index">04</span><div><strong>Habilidades, fortalezas y áreas de oportunidad</strong><small>Autoanálisis personal</small></div><span class="structure-status">Pendiente</span></div>
+          <div class="structure-item"><span class="structure-index">05</span><div><strong>Investigación de tres profesiones</strong><small>Ingeniería Mecánica y Eléctrica, Mecatrónica y Aeronáutica</small></div><span class="structure-status">Pendiente</span></div>
+          <div class="structure-item"><span class="structure-index">06</span><div><strong>Entrevista a un profesionista</strong><small>15 preguntas y respuestas, perfil y reflexión</small></div><span class="structure-status">Pendiente</span></div>
+          <div class="structure-item"><span class="structure-index">07</span><div><strong>Línea del tiempo a 10 años</strong><small>Metas académicas y profesionales</small></div><span class="structure-status">Pendiente</span></div>
+          <div class="structure-item"><span class="structure-index">08</span><div><strong>Conclusión personal</strong><small>Reflexión sobre la decisión vocacional</small></div><span class="structure-status">Pendiente</span></div>
+          <div class="structure-item"><span class="structure-index">09</span><div><strong>Bibliografía</strong><small>Fuentes consultadas en formato APA</small></div><span class="structure-status">Pendiente</span></div>
+          <div class="structure-item"><span class="structure-index">10</span><div><strong>Presentación digital</strong><small>Organización y evidencia de la exposición</small></div><span class="structure-status">Pendiente</span></div>
+        </div>
+      </section>
+      <footer class="workspace-footer"><span>Hecho para organizar tu PIA</span><span>HTML · CSS · JavaScript · Sin dependencias</span></footer>
+    </section>
+  </main>
+</body>
+</html>
