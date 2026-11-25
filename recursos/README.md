@@ -1,6 +1,6 @@
 # Recursos del portafolio
 
-Esta carpeta contiene las capturas optimizadas en WebP y los documentos PDF de apoyo usados por `index.html`.
+Esta carpeta contiene cuatro capturas optimizadas en WebP utilizadas por `index.html`.
 
 Archivos reservados para incorporar después:
 - `logo-uanl.png` — logotipo oficial de UANL.
