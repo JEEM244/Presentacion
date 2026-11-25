@@ -1,92 +1,12 @@
-(function () {
-  "use strict";
+(function(){'use strict';
+const STORE='pia-jeem-2026-v1';const editable=[...document.querySelectorAll('[data-edit]')];const toast=document.getElementById('toast');let timer;
+function notify(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),2200)}
+function save(){const data={};editable.forEach(el=>{data[el.dataset.edit]=('value'in el)?el.value:el.innerHTML});try{localStorage.setItem(STORE,JSON.stringify(data));}catch(e){}progress();}
+function load(){try{const data=JSON.parse(localStorage.getItem(STORE)||'{}');editable.forEach(el=>{if(!(el.dataset.edit in data))return;if('value'in el)el.value=data[el.dataset.edit];else el.innerHTML=data[el.dataset.edit]})}catch(e){}}
+load();editable.forEach(el=>{el.addEventListener('input',save);el.addEventListener('change',save)});
+const bar=document.getElementById('progress-bar'),txt=document.getElementById('progress-text');function progress(){const sections=[...document.querySelectorAll('.section')];const complete=sections.filter(section=>{if(section.id==='portada'&&section.querySelectorAll('.logo-slot img').length<2)return false;if(section.id==='entrevista'&&section.querySelector('.placeholder-preview'))return false;if(section.id==='anexo'&&section.querySelector('#facebook-publication .placeholder-preview'))return false;return true}).length;txt.textContent=complete+' de 10';bar.style.width=(complete/10*100)+'%'}progress();
+const links=[...document.querySelectorAll('#menu a')];const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id))}}),{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('.section').forEach(s=>observer.observe(s));
+document.getElementById('print').addEventListener('click',()=>window.print());document.getElementById('edit-toggle').addEventListener('click',()=>{document.querySelector('#portada').scrollIntoView({behavior:'smooth'});notify('Los campos con borde se pueden editar. Los cambios se guardan en este navegador.')});
+document.getElementById('export-word').addEventListener('click',()=>{const clone=document.querySelector('.content').cloneNode(true);clone.querySelectorAll('.hint').forEach(x=>x.remove());clone.querySelectorAll('input,textarea').forEach(el=>{const p=document.createElement('p');p.textContent=el.value||'Pendiente de completar';el.replaceWith(p)});clone.querySelectorAll('button').forEach(x=>x.remove());const style='<style>@page{size:letter;margin:2.54cm}body{font-family:Arial,sans-serif;font-size:12pt;line-height:1.5;color:#111}p,li,td{ text-align:justify}h1,h2,h3{color:#17233b}table{width:100%;border-collapse:collapse}td,th{border:1px solid #aaa;padding:6px}a{color:#111;text-decoration:none}.section{margin:0 0 25pt}.card,.prose,.career{border:1px solid #bbb;padding:12pt;margin:10pt 0}.bars i,.meter,.score-compare i{display:none}.bar{margin:4pt 0}.cover-sheet{page-break-after:always}.question{margin:8pt 0;border:1px solid #bbb;padding:8pt}.question textarea{display:none}</style>';const html='<!doctype html><html><head><meta charset="utf-8"><title>PIA - Mi futuro profesional</title>'+style+'</head><body>'+clone.innerHTML+'</body></html>';const blob=new Blob(['\ufeff',html],{type:'application/msword;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='JEEM-PIA.doc';a.click();URL.revokeObjectURL(url);notify('Se generó el documento Word editable. Revisa el formato antes de entregar.');});
 
-  const defaults = {
-    personalText: document.getElementById("personal-text").value
-  };
-
-  const elements = {
-    name: document.getElementById("student-name"),
-    group: document.getElementById("student-group"),
-    date: document.getElementById("document-date"),
-    teacher: document.getElementById("teacher"),
-    personalText: document.getElementById("personal-text"),
-    previewName: document.getElementById("preview-name"),
-    previewGroup: document.getElementById("preview-group"),
-    previewDate: document.getElementById("preview-date"),
-    previewTeacher: document.getElementById("preview-teacher"),
-    previewText: document.getElementById("preview-text"),
-    characterCount: document.getElementById("character-count")
-  };
-
-  function formatDate(value) {
-    if (!value) return "Por completar";
-    const parts = value.split("-").map(Number);
-    const date = new Date(parts[0], parts[1] - 1, parts[2]);
-    return new Intl.DateTimeFormat("es-MX", {
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    }).format(date);
-  }
-
-  function renderParagraphs() {
-    const paragraphs = elements.personalText.value
-      .split(/\n\s*\n/)
-      .map(function (paragraph) { return paragraph.trim(); })
-      .filter(Boolean);
-
-    elements.previewText.replaceChildren();
-    paragraphs.forEach(function (paragraph) {
-      const p = document.createElement("p");
-      p.textContent = paragraph;
-      elements.previewText.appendChild(p);
-    });
-    elements.characterCount.textContent = elements.personalText.value.length + " caracteres";
-  }
-
-  function getData() {
-    return {
-      name: elements.name.value.trim(),
-      group: elements.group.value.trim(),
-      date: formatDate(elements.date.value),
-      dateISO: elements.date.value,
-      teacher: elements.teacher.value.trim(),
-      personalText: elements.personalText.value.trim()
-    };
-  }
-
-  function updatePreview() {
-    const data = getData();
-    elements.previewName.textContent = data.name || "Nombre del estudiante";
-    elements.previewGroup.textContent = data.group || "Por completar";
-    elements.previewDate.textContent = data.date;
-    elements.previewTeacher.textContent = data.teacher || "Por completar";
-    renderParagraphs();
-  }
-
-  [elements.name, elements.group, elements.date, elements.teacher, elements.personalText]
-    .forEach(function (input) {
-      input.addEventListener("input", updatePreview);
-      input.addEventListener("change", updatePreview);
-    });
-
-  document.getElementById("reset-text").addEventListener("click", function () {
-    elements.personalText.value = defaults.personalText;
-    updatePreview();
-  });
-
-  document.getElementById("export-button").addEventListener("click", function () {
-    if (!window.PIAWordExport) {
-      window.alert("No se pudo cargar el módulo de exportación. Recarga la página e inténtalo otra vez.");
-      return;
-    }
-    window.PIAWordExport.download(getData());
-  });
-
-  document.getElementById("print-button").addEventListener("click", function () {
-    window.print();
-  });
-
-  updatePreview();
 })();
