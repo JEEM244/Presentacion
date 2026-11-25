@@ -14,7 +14,7 @@ Portafolio web del Producto Integrador de Aprendizaje de Elección Vocacional. E
 - `index.html`: portada y los diez apartados del portafolio.
 - `css/styles.css`: diseño responsive y reglas de impresión.
 - `js/app.js`: guardado local, avance del proyecto, navegación y exportaciones.
-- `recursos/`: capturas de resultados vocacionales y documentos PDF de apoyo.
+- `recursos/`: cuatro capturas optimizadas de los instrumentos vocacionales.
 
 ## Apartados para completar después
 
